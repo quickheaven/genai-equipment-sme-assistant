@@ -9,6 +9,36 @@ def lambda_handler(event, context):
     user_input = event['prompt']
     print(user_input)
 
+    #3 Get request syntax details from documentation - (Inference, user & system prompt, schema version) & body should be json object - use json.dumps for body & print response
+    message_prompt = [{"role": "user", "content": [{"text": user_input}]}]
+    
+    system_prompt = [
+            {
+                "text": "Act as a wind turbine manufacturing assistant. Summarize the logs in 5 lines"
+            }
+    ]
+
+    inference_params = {"maxTokens": 2500, "topP": 0.9, "topK": 20, "temperature": 0.7}
+
+    request_body = {
+        "schemaVersion": "messages-v1",
+        "messages": message_prompt,
+        "system": system_prompt,
+        "inferenceConfig": inference_params,
+    }
+
+    response = client.invoke_model(
+        body=json.dumps(request_body),
+        contentType='application/json',
+        accept='application/json',
+        modelId='amazon.nova-pro-v1:0',
+        trace='ENABLED'',
+        #guardrailIdentifier='string',
+        #guardrailVersion='string',
+        performanceConfigLatency='standard'
+    )
+
+
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')
