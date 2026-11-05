@@ -27,12 +27,12 @@ def lambda_handler(event, context):
         "inferenceConfig": inference_params,
     }
 
-    response = client.invoke_model(
+    response = client_sme.invoke_model(
         body=json.dumps(request_body),
         contentType='application/json',
         accept='application/json',
         modelId='amazon.nova-pro-v1:0',
-        trace='ENABLED'',
+        trace='ENABLED',
         #guardrailIdentifier='string',
         #guardrailVersion='string',
         performanceConfigLatency='standard'
