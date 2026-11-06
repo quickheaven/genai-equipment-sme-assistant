@@ -38,8 +38,19 @@ def lambda_handler(event, context):
         performanceConfigLatency='standard'
     )
 
+    #print(response)
 
+    #4 Read the Streaming Body to Bytes (.read method) and then Bytes to Dictionary using json.loads
+    response_dict = json.loads(response['body'].read())
+    print(response_dict)
+    #print(type(response_dict))
+    
+    #5 Extract the text from the dictionary
+    final_response = response_dict['output']['message']['content'][0]['text']
+    #print(final_response)
+
+    #6. Update the return statement to return the final response
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
+        'body': json.dumps(final_response)
     }
