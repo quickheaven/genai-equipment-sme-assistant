@@ -1,0 +1,19 @@
+[project]
+name = "genai-equipment-sme-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "ACristobal", email = "ajie.io@yahoo.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "streamlit>=1.67.0",
+]
+
+[project.scripts]
+genai-equipment-sme-assistant = "genai_equipment_sme_assistant:main"
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
