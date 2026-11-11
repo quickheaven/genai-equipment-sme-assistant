@@ -33,8 +33,8 @@ def lambda_handler(event, context):
         accept='application/json',
         modelId='amazon.nova-pro-v1:0',
         trace='ENABLED',
-        #guardrailIdentifier='string',
-        #guardrailVersion='string',
+        guardrailIdentifier='e25tq9fvdv1q',
+        guardrailVersion='1',
         performanceConfigLatency='standard'
     )
 
